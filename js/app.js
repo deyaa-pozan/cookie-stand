@@ -9,6 +9,8 @@ function randomCustomerPerHour(max, min) {
 let locationArray = [];
 let totalSalePerHour = []
 let totalAllLocation = 0
+let divTable = document.getElementById("table")
+let tableTag = document.createElement("table")
 
 function LocationSale(name, minCust, maxCust, averageCookiesPerCustomer) {
     this.name = name,
@@ -22,22 +24,22 @@ function LocationSale(name, minCust, maxCust, averageCookiesPerCustomer) {
 
 
 LocationSale.prototype.setCookiesPerHour = function() {
-    this.sales = []
+
     for (let i = 0; i < staticHours.length; i++) {
         this.cookiesPerHour[i] = Math.floor(this.averageCookiesPerCustomer * randomCustomerPerHour(this.maxCust, this.minCust))
         this.totalSales += this.cookiesPerHour[i];
-        this.sales[i] = `${staticHours[i]}: ${this.cookiesPerHour[i]} `;
+
+
     }
 
     this.cookiesPerHour[this.cookiesPerHour.length] = this.totalSales
     locationArray[locationArray.length] = this;
-    console.log(locationArray);
+
 }
 
 
 function render() {
-    var divTable = document.getElementById("table")
-    var tableTag = document.createElement("table")
+
     let tr = document.createElement("tr")
     let th = document.createElement("th")
     th.appendChild(document.createTextNode('location'))
@@ -52,8 +54,6 @@ function render() {
     thTotal.textContent = "Daily Location Total"
     tr.appendChild(thTotal);
     divTable.appendChild(tableTag);
-
-
     for (let i = 0; i < locationArray.length; i++) {
         let tr = document.createElement("tr")
         let td = document.createElement("td")
@@ -90,7 +90,11 @@ function render() {
     td.appendChild(document.createTextNode(`${totalAllLocation}`))
     trTotalHours.appendChild(td);
 
+
+
+
 }
+
 
 let Seattle = new LocationSale("Seattle", 15, 25, 6.2)
 let Tokyo = new LocationSale("Tokyo", 10, 24, 3.3)
@@ -105,3 +109,35 @@ Paris.setCookiesPerHour()
 Lima.setCookiesPerHour()
 
 render()
+
+
+const cookiesForm = document.getElementById('cookies');
+
+cookiesForm.addEventListener('submit', handleSubmitting)
+
+function handleSubmitting(event) {
+    event.preventDefault();
+    let nameLocation = event.target.nameLocation.value;
+    let minCust = Number(event.target.minCust.value);
+    let maxCust = Number(event.target.maxCust.value);
+    let averageCookiesPerCustomer = Number(event.target.averageCookiesPerCustomer.value);
+
+
+    while (tableTag.rows.length > 0) {
+        tableTag.deleteRow(0);
+    }
+
+    for (let i = 0; i < locationArray.length; i++) {
+
+        if (locationArray[i].name === nameLocation) {
+            locationArray.splice(i, 1);
+            break
+        }
+    }
+
+    let newLocation = new LocationSale(nameLocation, minCust, maxCust, averageCookiesPerCustomer)
+    newLocation.setCookiesPerHour()
+    totalAllLocation = 0
+
+    render()
+}
