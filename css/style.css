@@ -106,7 +106,7 @@ body {
 .slider-controls .indicators ul li {
     display: inline-block;
     background-color: #f6f6f6;
-    color: #333;
+    color: #009688;
     font-weight: bold;
     height: 28px;
     width: 28px;
@@ -123,7 +123,7 @@ body {
 
 * Style the top navigation bar */ .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #009688;
 }
 
 .topnav a {
@@ -138,7 +138,7 @@ body {
 .topnav p {
     float: left;
     display: block;
-    color: #22cebd;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -154,14 +154,14 @@ body {
 .footer {
     background-color: #f1f1f1;
     padding: 10px;
-    background-color: rgb(24, 24, 24);
+    background-color: #009688;
     height: 150px;
     color: white;
 }
 
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #009688;
 }
 
 .topnav a {
@@ -185,7 +185,7 @@ body {
 
 table {
     color: rgb(14, 119, 0);
-    font-size: 3ch;
+    font-size: 2.5ch;
     font-family: Verdana;
     font-weight: bold;
 }
@@ -269,4 +269,36 @@ table {
     width: 15%;
     height: 18px;
     background-color: #f44336;
+}
+
+input[type=text],
+input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #013503;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
